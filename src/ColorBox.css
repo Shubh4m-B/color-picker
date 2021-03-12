@@ -115,6 +115,14 @@
   font-size: 12px;
 }
 
+.light-text {
+  color: white;
+}
+
+.ColorBox .dark-text {
+  color: rgb(71, 71, 71);
+}
+
 .ColorBox-more {
   background-color: rgba(255, 255, 255, 0.3);
   position: absolute;
