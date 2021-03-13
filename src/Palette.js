@@ -39,6 +39,7 @@ export class Palette extends Component {
                 key={color.id}
                 url={`/palette/${id}/${color.id}`}
                 showLink={true}
+                showingFullPalette
             />
         ))
         return (
