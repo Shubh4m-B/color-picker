@@ -15,7 +15,10 @@ export class PaletteList extends Component {
         return (
             <div className={classes.root}>
                 <div className={classes.container}>
-                    <nav className={classes.nav}><h1>Color Picker</h1></nav>
+                    <nav className={classes.nav}>
+                        <h1>Color Picker</h1>
+                        <Link to="/palette/new">Create New Palette</Link>
+                    </nav>
                     <div className={classes.palettes}>
                         {palettes.map(palette => (
                             <MiniPalette {...palette} handleClick={() => this.goToPalette(palette.id)} />

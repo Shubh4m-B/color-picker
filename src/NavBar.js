@@ -9,7 +9,6 @@ import styles from './Styles/NavBarStyles'
 import { Link } from 'react-router-dom';
 
 import 'rc-slider/assets/index.css'
-// import './NavBar.css'
 
 export class NavBar extends Component {
     constructor(props) {
