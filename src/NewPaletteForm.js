@@ -76,6 +76,8 @@ export default function NewPaletteForm() {
     const classes = useStyles();
     // const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [currentColor, setColor] = React.useState('teal');
+    const [colors, setNewColor] = React.useState(['purple', '#e15764'])
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -84,6 +86,14 @@ export default function NewPaletteForm() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const updateCurrentColor = (newColor) => {
+        setColor(newColor.hex);
+    };
+
+    const addNewColor = () => {
+        setNewColor(oldColors => [...oldColors, currentColor])
+    }
 
     return (
         <div className={classes.root}>
@@ -131,8 +141,18 @@ export default function NewPaletteForm() {
                     <Button variant="contained" color="secondary">Clear Palette</Button>
                     <Button variant="contained" color="primary">Random Color</Button>
                 </div>
-                <ChromePicker color="red" onChangeComplete={(newColor) => console.log(newColor)} />
-                <Button variant="contained" color="primary">Add Color</Button>
+                <ChromePicker
+                    color={currentColor}
+                    onChangeComplete={updateCurrentColor}
+                />
+                <Button
+                    variant="contained"
+                    color="primary"
+                    style={{ background: currentColor }}
+                    onClick={addNewColor}
+                >
+                    Add Color
+                </Button>
             </Drawer>
             <main
                 className={clsx(classes.content, {
@@ -140,7 +160,10 @@ export default function NewPaletteForm() {
                 })}
             >
                 <div className={classes.drawerHeader} />
+                {colors.map(color => (
+                    <li style={{ background: color }}>{color}</li>
+                ))}
             </main>
-        </div>
+        </div >
     );
 }
