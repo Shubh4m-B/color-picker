@@ -83,6 +83,19 @@ export default function NewPaletteForm() {
     const [colors, setNewColor] = React.useState([]);
     const [newName, setNewName] = React.useState("");
 
+    React.useEffect(() => {
+        ValidatorForm.addValidationRule("isColorNameUnique", value => {
+            return colors.every(
+                ({ name }) => name.toLowerCase() !== value.toLowerCase()
+            );
+        });
+        ValidatorForm.addValidationRule("isColorUnique", value => {
+            return colors.every(
+                ({ color }) => color !== currentColor
+            );
+        });
+    });
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -100,7 +113,8 @@ export default function NewPaletteForm() {
             color: currentColor,
             name: newName
         }
-        setNewColor(oldColors => [...oldColors, newColor])
+        setNewColor(oldColors => [...oldColors, newColor]);
+        setNewName("")
     }
 
     const handleNameChange = (evt) => {
@@ -161,8 +175,8 @@ export default function NewPaletteForm() {
                     <TextValidator
                         value={newName}
                         onChange={handleNameChange}
-                        validators={["required"]}
-                        errorMessages={["Color name is required"]}
+                        validators={["required", "isColorNameUnique", "isColorUnique"]}
+                        errorMessages={["Color name is required", "Color name must be unique", "Color already used"]}
                     />
                     <Button
                         variant="contained"
