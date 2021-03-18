@@ -15,7 +15,7 @@ import { ChromePicker } from 'react-color';
 import DraggableColorBox from './DraggableColorBox';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
-const drawerWidth = 400;
+const drawerWidth = 350;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -78,13 +78,15 @@ const useStyles = makeStyles((theme) => ({
 export default function NewPaletteForm(props) {
     const classes = useStyles();
     // const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
     const [currentColor, setColor] = React.useState('teal');
-    const [colors, setNewColor] = React.useState([]);
+    const [colors, setNewColor] = React.useState(props.palettes[0].colors);
     const [name, setName] = React.useState({
         colorName: "",
         paletteName: ""
     });
+    const maxColors = 20;
+    const paletteIsFull = colors.length >= maxColors;
 
     React.useEffect(() => {
         ValidatorForm.addValidationRule("isColorNameUnique", value => {
@@ -146,6 +148,17 @@ export default function NewPaletteForm(props) {
         setNewColor(newColors);
     }
 
+    const clearColors = () => {
+        setNewColor([]);
+    }
+
+    const addRandomColor = () => {
+        const allColors = props.palettes.map(p => p.colors).flat();
+        var random = Math.floor(Math.random() * allColors.length);
+        const randomColor = allColors[random];
+        setNewColor([...colors, randomColor])
+    }
+
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -203,8 +216,8 @@ export default function NewPaletteForm(props) {
                     Design your palette
                 </Typography>
                 <div>
-                    <Button variant="contained" color="secondary">Clear Palette</Button>
-                    <Button variant="contained" color="primary">Random Color</Button>
+                    <Button variant="contained" color="secondary" onClick={clearColors}>Clear Palette</Button>
+                    <Button variant="contained" color="primary" onClick={addRandomColor} disabled={paletteIsFull}>Random Color</Button>
                 </div>
                 <ChromePicker
                     color={currentColor}
@@ -221,11 +234,12 @@ export default function NewPaletteForm(props) {
                     <Button
                         variant="contained"
                         color="primary"
-                        style={{ background: currentColor }}
+                        style={{ background: paletteIsFull ? "grey" : currentColor }}
                         // onClick={addNewColor}
                         type="submit"
+                        disabled={colors.length >= maxColors}
                     >
-                        Add Color
+                        {paletteIsFull ? "Palette Full" : "Add Color"}
                     </Button>
                 </ValidatorForm>
 
