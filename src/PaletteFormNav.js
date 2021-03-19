@@ -11,10 +11,6 @@ import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 export class PaletteFormNav extends Component {
-    constructor(props) {
-        super(props);
-
-    }
     componentDidMount() {
         ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
             return this.props.palettes.every(
