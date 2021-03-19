@@ -1,14 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
+import PaletteFormNav from './PaletteFormNav';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import { ChromePicker } from 'react-color';
@@ -161,42 +158,15 @@ export default function NewPaletteForm(props) {
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
-                color="default"
-            >
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap>
-                        New Palette Form
-                    </Typography>
-                    <ValidatorForm onSubmit={handleSave}>
-                        <TextValidator
-                            value={name.paletteName}
-                            name="paletteName"
-                            label="Palette Name"
-                            onChange={handleChange}
-                            validators={["required", "isPaletteNameUnique"]}
-                            errorMessages={["Palette name is required", "Palette Name Already used"]}
-                        />
-                        <Button variant="contained" color="primary" type="submit">
-                            Save Palette
-                        </Button>
-                    </ValidatorForm>
-                </Toolbar>
-            </AppBar>
+            <PaletteFormNav
+                open={open}
+                classes={classes}
+                name={name}
+                handleChange={handleChange}
+                handleDrawerOpen={handleDrawerOpen}
+                handleSave={handleSave}
+                palettes={props.palettes}
+            />
             <Drawer
                 className={classes.drawer}
                 variant="persistent"
