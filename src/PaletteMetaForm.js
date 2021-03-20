@@ -19,13 +19,13 @@ export default function PaletteFormMeta(props) {
         setOpen(false);
     };
 
-    React.useEffect = () => {
-        ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
-            return props.palettes.every(
-                ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-            );
-        });
-    }
+    // React.useEffect = () => {
+    //     ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
+    //         return props.palettes.every(
+    //             ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+    //         );
+    //     });
+    // }
 
     const { classes, name, handleChange, handleSave } = props;
     return (
