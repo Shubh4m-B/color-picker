@@ -34,15 +34,18 @@ export default function PaletteFormMeta(props) {
                 Save Palette
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Save Palette</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>Add a suitable name for the palette, the name must be unique</DialogContentText>
-                    <ValidatorForm onSubmit={handleSave} className={classes.form}>
+                <DialogTitle id="form-dialog-title">Choose a palette name</DialogTitle>
+                <ValidatorForm onSubmit={handleSave} className={classes.form}>
+                    <DialogContent>
+                        <DialogContentText>Please enter a name for your new palette. Make sure it is unique.</DialogContentText>
+
                         <TextValidator
                             value={name.paletteName}
                             name="paletteName"
                             label="Palette Name"
                             onChange={handleChange}
+                            fullWidth
+                            margin="normal"
                             validators={["required", "isPaletteNameUnique"]}
                             errorMessages={["Palette name is required", "Palette Name Already used"]}
                         />
@@ -50,12 +53,13 @@ export default function PaletteFormMeta(props) {
                             <Button onClick={handleClose} color="primary">
                                 Cancel
                             </Button>
-                            <Button type="submit" color="primary">
+                            <Button type="submit" color="primary" variant="contained">
                                 Save Palette
                             </Button>
                         </DialogActions>
-                    </ValidatorForm>
-                </DialogContent>
+
+                    </DialogContent>
+                </ValidatorForm>
             </Dialog>
         </div>
     );

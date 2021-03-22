@@ -43,10 +43,13 @@ const styles = (theme) => ({
         display: 'none',
     },
     navBtns: {
-        width: "40%",
+        width: "25%",
         display: "flex",
         justifyContent: "space-evenly",
         alignItems: "center"
+    },
+    link: {
+        textDecoration: "none"
     },
     form: {
         display: "flex"
@@ -89,7 +92,7 @@ export class PaletteFormNav extends Component {
                     </Toolbar>
                     <div className={classes.navBtns}>
                         <PaletteMetaForm name={name} handleSave={handleSave} handleChange={handleChange} classes={classes} palettes={palettes} />
-                        <Link to="/">
+                        <Link to="/" className={classes.link}>
                             <Button variant="contained" color="secondary">
                                 Go Back
                             </Button>
