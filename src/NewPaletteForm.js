@@ -109,14 +109,9 @@ export default function NewPaletteForm(props) {
         setName({ ...name, [evt.target.name]: evt.target.value });
     }
 
-    const handleSave = () => {
-        let newName = name.paletteName;
-        const newPalette = {
-            paletteName: newName,
-            id: newName.toLowerCase().replace(/ /g, "-"),
-            colors: colors,
-
-        }
+    const handleSave = (newPalette) => {
+        newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
+        newPalette.colors = colors;
         props.savePalette(newPalette)
         props.history.push("/");
     }
