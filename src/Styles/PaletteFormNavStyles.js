@@ -1,3 +1,5 @@
+import sizes from './Sizes';
+
 const drawerWidth = 350;
 
 const styles = (theme) => ({
@@ -32,7 +34,12 @@ const styles = (theme) => ({
         width: "25%",
         display: "flex",
         justifyContent: "space-evenly",
-        alignItems: "center"
+        alignItems: "center",
+        [sizes.down("xs")]: {
+            marginRight: "0",
+            width: "50%",
+            padding: "0"
+        }
     },
     link: {
         textDecoration: "none"
