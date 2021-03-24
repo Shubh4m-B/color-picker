@@ -16,7 +16,7 @@ export default function NewPaletteForm(props) {
     // const theme = useTheme();
     const [open, setOpen] = React.useState(true);
     const [currentColor, setColor] = React.useState('teal');
-    const [colors, setNewColor] = React.useState(props.palettes[0].colors);
+    const [colors, setNewColor] = React.useState(props.seedColors[0].colors);
     const [name, setName] = React.useState({
         colorName: "",
         paletteName: ""
@@ -66,7 +66,7 @@ export default function NewPaletteForm(props) {
     }
 
     const addRandomColor = () => {
-        const allColors = props.palettes.map(p => p.colors).flat();
+        const allColors = props.seedColors.map(p => p.colors).flat();
         var random = Math.floor(Math.random() * allColors.length);
         const randomColor = allColors[random];
         setNewColor([...colors, randomColor])

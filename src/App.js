@@ -50,7 +50,7 @@ export class App extends Component {
         <Route
           exact
           path="/palette/new"
-          render={(routeProps) => <NewPaletteForm savePalette={this.savePalette} palettes={this.state.palettes} {...routeProps} />}
+          render={(routeProps) => <NewPaletteForm savePalette={this.savePalette} palettes={this.state.palettes} {...routeProps} seedColors={seedColors} />}
         />
         <Route
           exact
