@@ -21,9 +21,9 @@ export default {
             textDecoration: "none",
             color: "black"
         },
-        [sizes.down("xs")]: {
-            display: "none"
-        }
+        // [sizes.down("xs")]: {
+        //     display: "none"
+        // }
     },
 
     NavBarSlider: {
@@ -42,8 +42,11 @@ export default {
             border: "2px solid teal",
             boxShadow: "none"
         },
-        [sizes.down("md")]: {
+        [sizes.down("sm")]: {
             width: "150px"
+        },
+        [sizes.down("xs")]: {
+            width: "100px"
         }
     },
     selectContainer: {
