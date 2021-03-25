@@ -1,4 +1,5 @@
 import sizes from './Sizes';
+import chroma from "chroma-js";
 
 const styles = {
     root: {
@@ -11,7 +12,7 @@ const styles = {
         marginBottom: "-3.5px",
         "&:hover svg": {
             color: "white",
-            transform: "scale(1.1)"
+            transform: "scale(1.3)"
         },
         [sizes.down("lg")]: {
             width: "25%",
@@ -32,7 +33,8 @@ const styles = {
         left: "0px",
         bottom: "0px",
         padding: "10px",
-        color: "rgba(0,0,0,0.5)",
+        color: props =>
+            chroma(props.color).luminance() >= 0.7 ? "black" : "white",
         letterSpacing: "1px",
         textTransform: "uppercase",
         fontSize: "12px",
