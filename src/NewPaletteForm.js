@@ -67,8 +67,14 @@ export default function NewPaletteForm(props) {
 
     const addRandomColor = () => {
         const allColors = props.seedColors.map(p => p.colors).flat();
-        var random = Math.floor(Math.random() * allColors.length);
-        const randomColor = allColors[random];
+        let random
+        let randomColor
+        let isDuplicateColor = true;
+        while (isDuplicateColor) {
+            random = Math.floor(Math.random() * allColors.length);
+            randomColor = allColors[random];
+            isDuplicateColor = colors.some(color => color.name === randomColor.name)
+        }
         setNewColor([...colors, randomColor])
     }
 
