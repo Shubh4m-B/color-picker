@@ -40,7 +40,7 @@ export class PaletteList extends Component {
         this.closeDialog();
     }
     goToPalette(id) {
-        this.props.history.push(`/palette/${id}`)
+        this.props.history.push(`/color-picker/palette/${id}`)
     }
     render() {
         const { palettes, classes } = this.props;
@@ -50,7 +50,7 @@ export class PaletteList extends Component {
                 <div className={classes.container}>
                     <nav className={classes.nav}>
                         <h1 className={classes.heading}>Color Picker</h1>
-                        <Link to="/palette/new">Create New Palette</Link>
+                        <Link to="/color-picker/palette/new">Create New Palette</Link>
                     </nav>
                     <TransitionGroup className={classes.palettes}>
                         {palettes.map(palette => (

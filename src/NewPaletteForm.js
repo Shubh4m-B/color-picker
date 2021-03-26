@@ -53,7 +53,7 @@ export default function NewPaletteForm(props) {
         newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
         newPalette.colors = colors;
         props.savePalette(newPalette)
-        props.history.push("/");
+        props.history.push("/color-picker");
     }
 
     const removeColor = (colorName) => {

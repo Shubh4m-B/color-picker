@@ -49,7 +49,7 @@ export class PaletteFormNav extends Component {
                     </Toolbar>
                     <div className={classes.navBtns}>
                         <PaletteMetaForm name={name} handleSave={handleSave} handleChange={handleChange} classes={classes} palettes={palettes} />
-                        <Link to="/" className={classes.link}>
+                        <Link to="/color-picker" className={classes.link}>
                             <Button variant="contained" color="secondary">
                                 Go Back
                             </Button>

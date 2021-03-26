@@ -37,7 +37,7 @@ export class Palette extends Component {
                 background={color[format]}
                 name={color.name}
                 key={color.id}
-                url={`/palette/${id}/${color.id}`}
+                url={`/color-picker/palette/${id}/${color.id}`}
                 showLink={true}
                 showingFullPalette
             />

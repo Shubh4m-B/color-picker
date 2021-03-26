@@ -28,7 +28,7 @@ export class NavBar extends Component {
         return (
             <header className={classes.NavBar}>
                 <div className={classes.NavBarLogo}>
-                    <Link to="/">ColorPicker</Link>
+                    <Link to="/color-picker">ColorPicker</Link>
                 </div>
                 {showingAllColors && (<div>
                     <span>Level : {level}</span>

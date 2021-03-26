@@ -54,7 +54,7 @@ export class App extends Component {
             <Switch location={location}>
               <Route
                 exact
-                path="/palette/new"
+                path="/color-picker/palette/new"
                 render={(routeProps) =>
                   <Page>
                     <NewPaletteForm savePalette={this.savePalette} palettes={this.state.palettes} {...routeProps} seedColors={seedColors} />
@@ -62,7 +62,7 @@ export class App extends Component {
               />
               <Route
                 exact
-                path="/"
+                path="/color-picker"
                 render={(routeProps) =>
                   <Page>
                     <PaletteList palettes={this.state.palettes} deletePalette={this.deletePalette} {...routeProps} />
@@ -70,7 +70,7 @@ export class App extends Component {
               />
               <Route
                 exact
-                path="/palette/:id"
+                path="/color-picker/palette/:id"
                 render={routeProps => (
                   <Page>
                     <Palette palette={generatePalette(this.findPalette(routeProps.match.params.id))} />
@@ -79,7 +79,7 @@ export class App extends Component {
               />
               <Route
                 exact
-                path="/palette/:paletteId/:colorId"
+                path="/color-picker/palette/:paletteId/:colorId"
                 render={routeProps => (
                   <Page>
                     <SingleColorPalette
