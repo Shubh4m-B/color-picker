@@ -8,8 +8,10 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
-import DraggableColorBox from './DraggableColorBox';
+import DraggableColorList from './DraggableColorList';
 import useStyles from './Styles/NewPaletteFormStyles';
+import { arrayMove } from 'react-sortable-hoc';
+
 
 export default function NewPaletteForm(props) {
     const classes = useStyles();
@@ -78,6 +80,12 @@ export default function NewPaletteForm(props) {
         setNewColor([...colors, randomColor])
     }
 
+    const onSortEnd = ({ oldIndex, newIndex }) => {
+        setNewColor(
+            arrayMove(colors, oldIndex, newIndex)
+        )
+    }
+
     return (
         <div className={classes.root}>
             <PaletteFormNav
@@ -128,16 +136,8 @@ export default function NewPaletteForm(props) {
                 })}
             >
                 <div className={classes.drawerHeader} />
-                {colors.map(color => (
-                    <DraggableColorBox
-                        key={color.name}
-                        color={color.color}
-                        name={color.name}
-                        handleClick={() => removeColor(color.name)}
-                    >
-                    </DraggableColorBox>
-                ))}
+                <DraggableColorList colors={colors} removeColor={removeColor} axis="xy" onSortEnd={onSortEnd} />
             </main>
-        </div >
+        </div>
     );
 }
